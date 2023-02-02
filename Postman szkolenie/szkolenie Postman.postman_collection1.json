@@ -1,0 +1,3095 @@
+{
+	"info": {
+		"_postman_id": "d36d5aa4-725a-48eb-b10d-cb7d59ae7984",
+		"name": "szkolenie Postman",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21930841"
+	},
+	"item": [
+		{
+			"name": "AUTHORS",
+			"item": [
+				{
+					"name": "GET",
+					"item": [
+						{
+							"name": "Przeczytanie wszystkich autorów ",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/authors",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"authors"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Sprawdzenie czy lista nie jest pusta",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"const author = pm.response.json (); \r",
+											"\r",
+											"pm.test(\"Should return non empty title and author\", function () {\r",
+											"    pm.expect(author).is.not.empty;\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/authors",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"authors"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Wyszukiwanie istniejącego autora po imieniu",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/authors?firstName=joshua",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"authors"
+									],
+									"query": [
+										{
+											"key": "firstName",
+											"value": "joshua"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Wyszukiwanie istniejącego autora po nazwisku",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/authors?lastName=bloch",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"authors"
+									],
+									"query": [
+										{
+											"key": "lastName",
+											"value": "bloch"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Wyszukiwanie nieistniejącego autora po imieniu",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/authors?firstName=bloch",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"authors"
+									],
+									"query": [
+										{
+											"key": "firstName",
+											"value": "bloch"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Wyszukiwanie istniejącego autora po nazwisku i imieniu",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/authors?lastName=goetz&firstName=brian",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"authors"
+									],
+									"query": [
+										{
+											"key": "lastName",
+											"value": "goetz"
+										},
+										{
+											"key": "firstName",
+											"value": "brian"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Wyszukiwanie nieistniejącego autora po imieniu i nazwisku",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/authors?firstName=bloch&lastName=joshua",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"authors"
+									],
+									"query": [
+										{
+											"key": "firstName",
+											"value": "bloch"
+										},
+										{
+											"key": "lastName",
+											"value": "joshua"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Przeczytanie jednego autora",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/authors/39",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"authors",
+										"39"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Przeczytanie jednego nieistniejącego",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/authors/100",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"authors",
+										"100"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "POST",
+					"item": [
+						{
+							"name": "Utworzenie nowego autora",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"const author = pm.response.json (); \r",
+											"\r",
+											"pm.test(\"Should return correct author details\", function () {\r",
+											"    pm.expect(author.firstName).is.eql(\"Test\");\r",
+											"    pm.expect(author.lastName).is.eql(\"Testowy\");\r",
+											"});\r",
+											"\r",
+											"pm.collectionVariables.set(\"authorId\", author.id)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\":\"Test\",\r\n    \"lastName\":\"Testowy\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/authors",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"authors"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Wyszukanie nowego autora Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"const author = pm.response.json (); \r",
+											"\r",
+											"pm.test(\"Should return correct author details\", function () {\r",
+											"    pm.expect(author.firstName).is.eql(\"Test\");\r",
+											"    pm.expect(author.lastName).is.eql(\"Testowy\");\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\":\"Test\",\r\n    \"lastName\":\"Testowy\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/authors/{{authorId}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"authors",
+										"{{authorId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Utworzenie nowego autora z cyfr",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\":10,\r\n    \"lastName\":100\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/authors",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"authors"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Utworzenie nowego autora z brakującym imieniem",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\":\" \",\r\n    \"lastName\":\"Jasiński\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/authors",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"authors"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Utworzenie nowego autora z nazwiskiem ?",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\":\"Jaś\",\r\n    \"lastName\":\"?\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/authors",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"authors"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Utworzenie nowego autora z nazwiskiem jednoliterowym",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\":\"Jaś\",\r\n    \"lastName\":\"J\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/authors",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"authors"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Utworzenie nowego autora ze spacją na początku i na końcu",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\":\"Jaś\",\r\n    \"lastName\":\" Jasiński \"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/authors",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"authors"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Utworzenie nowego autora ze spacją w środku nazwiska",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\":\"Jaś\",\r\n    \"lastName\":\" Jas iński \"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/authors",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"authors"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Utworzenie nowego autora z pustym jsonem",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\": ,\r\n    \"lastName\":\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/authors",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"authors"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "PUT",
+					"item": [
+						{
+							"name": "utworzenie nowego autora ze zmienną",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"const author = pm.response.json (); \r",
+											"\r",
+											"pm.test(\"Should return correct author details\", function () {\r",
+											"    pm.expect(author.firstName).is.eql(\"Jan\");\r",
+											"    pm.expect(author.lastName).is.eql(\"Kowalski\");\r",
+											"});\r",
+											"pm.collectionVariables.set(\"authorId\", author.id)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\":\"Jan\",\r\n    \"lastName\":\"Kowalski\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/authors/",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"authors",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "edycja nowego autora ze zmienną",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\":\"edycjaJan\",\r\n    \"lastName\":\"edycjaKowalski\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/authors/{{authorId}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"authors",
+										"{{authorId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "edycja nowego autora takie samo imię i nazwisko",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\":\"Jan\",\r\n    \"lastName\":\"Jan\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/authors/{{authorId}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"authors",
+										"{{authorId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "edycja nowego autora bez nazwiska",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\":\"Jan\",\r\n    \"lastName\":\"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/authors/{{authorId}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"authors",
+										"{{authorId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "edycja nowego autora bez imienia",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\":\"\",\r\n    \"lastName\":\"Jan\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/authors/{{authorId}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"authors",
+										"{{authorId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "PATCH",
+					"item": [
+						{
+							"name": "utworzenie nowego autora ze zmienną",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"const author = pm.response.json (); \r",
+											"\r",
+											"pm.test(\"Should return correct author details\", function () {\r",
+											"    pm.expect(author.firstName).is.eql(\"Anna\");\r",
+											"    pm.expect(author.lastName).is.eql(\"Kowalska\");\r",
+											"});\r",
+											"pm.collectionVariables.set(\"authorId\", author.id)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\":\"Anna\",\r\n    \"lastName\":\"Kowalska\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/authors/",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"authors",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "utworzenie częściowo nowego autora ze zmienną",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\":\"Anna\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/authors/{{authorId}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"authors",
+										"{{authorId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "utworzenie autora bez imienia",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\":\"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/authors/{{authorId}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"authors",
+										"{{authorId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "utworzenie autora imię z cyfrą nazwisko z ?",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\":\"Anna2\",\r\n    \"lastName\": \"?\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/authors/{{authorId}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"authors",
+										"{{authorId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "DELETE",
+					"item": [
+						{
+							"name": "utworzenie nowego autora ze zmienną Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"const author = pm.response.json (); \r",
+											"\r",
+											"pm.test(\"Should return correct author details\", function () {\r",
+											"    pm.expect(author.firstName).is.eql(\"Asia\");\r",
+											"    pm.expect(author.lastName).is.eql(\"Jasielska\");\r",
+											"});\r",
+											"pm.collectionVariables.set(\"authorId\", author.id)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\":\"Asia\",\r\n    \"lastName\":\"Jasielska\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/authors/",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"authors",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Usunięcie istniejącego autora",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 204\", function () {\r",
+											"    pm.response.to.have.status(204);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/authors/50",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"authors",
+										"50"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Usunięcie istniejącego autora Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 204\", function () {\r",
+											"    pm.response.to.have.status(204);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/authors/51",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"authors",
+										"51"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Usunięcie istniejącego autora Copy 2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 204\", function () {\r",
+											"    pm.response.to.have.status(204);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/authors/{{authorId}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"authors",
+										"{{authorId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "sprawdzenie czy autor został usunięty",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/authors/{{authorId}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"authors",
+										"{{authorId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "BOOKS",
+			"item": [
+				{
+					"name": "GET",
+					"item": [
+						{
+							"name": "Przeczytanie listy książek",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/books",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"books"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Sprawdzenie czy lista nie jest pusta",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"const books = pm.response.json (); \r",
+											"\r",
+											"pm.test(\"Should return non empty title and author\", function () {\r",
+											"    pm.expect(books).is.not.empty;\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/books",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"books"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "wyszukanie po tytule",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/books?title=clean architecture",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"books"
+									],
+									"query": [
+										{
+											"key": "title",
+											"value": "clean architecture"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "wyszukanie po autorze",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/books?author=Neal",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"books"
+									],
+									"query": [
+										{
+											"key": "author",
+											"value": "Neal"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "wyszukanie bez autora",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/books?author=",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"books"
+									],
+									"query": [
+										{
+											"key": "author",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "wyszukanie bez tytułu",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/books?titlle=",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"books"
+									],
+									"query": [
+										{
+											"key": "titlle",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "wyszukanie po autorze i książce",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"const books = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Should return non empty list of books\", function () {\r",
+											"   pm.expect(books).is.not.empty;\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/books?title=Clean Code&author=Robert",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"books"
+									],
+									"query": [
+										{
+											"key": "title",
+											"value": "Clean Code"
+										},
+										{
+											"key": "author",
+											"value": "Robert"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "lista książek chcemy dostać 2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const books = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Should return non empty list of books\", function () {\r",
+											"      pm.expect(books.length).is.eql(2);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/books?author=steve",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"books"
+									],
+									"query": [
+										{
+											"key": "author",
+											"value": "steve"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "lista książek chcemy dostać się do każdego elementu i sprawdzić wiecej info o autorze i książce",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const books = pm.response.json();\r",
+											"\r",
+											"pm.test(\"sprawdź więcej informacji o autorze i książce\", function () {\r",
+											"      pm.expect(books.length).is.eql(1);\r",
+											"      pm.expect(books[0].title).is.eql('Building Microservices')\r",
+											"      pm.expect(books[0].price).is.eql(81.73)\r",
+											"      pm.expect(books[0].authors[0].firstName).is.eql(\"Sam\");\r",
+											"      pm.expect(books[0].authors[0].lastName).is.eql(\"Newman\")\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/books?author=Newman",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"books"
+									],
+									"query": [
+										{
+											"key": "author",
+											"value": "Newman"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "wyszukiwanie książki po tytule",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"const books = pm.response.json();\r",
+											"const titles = [];\r",
+											"\r",
+											"_.each(books,(book) => {\r",
+											"    titles.push(book.title);\r",
+											"});\r",
+											"\r",
+											"console.log(titles);\r",
+											"\r",
+											"pm.test(\"Should return non empty list od books\", function() {\r",
+											"    pm.expect(books).is.not.empty;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"List should contain Effective Java\", function () {\r",
+											"    pm.expect(titles).contains('Effective Java')\r",
+											"});\r",
+											"\r",
+											"\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/books?title=Java",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"books"
+									],
+									"query": [
+										{
+											"key": "title",
+											"value": "Java"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "wyszukiwanie książki po tytule i autorze",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"const books = pm.response.json();\r",
+											"const authors = [];\r",
+											"\r",
+											"// tutaj jest pętla w pętli, bardziej zaawansowane, a da ten efekt co niżej\r",
+											"// _.each(book.authors, (author) => {\r",
+											"//    authors.push(author.firstName + \" \" author.lastName);\r",
+											"//    });\r",
+											"//    });\r",
+											"\r",
+											"\r",
+											"_.each(books[0].authors,(author) => {\r",
+											"    authors.push(author.firstName + \" \" + author.lastName);\r",
+											"});\r",
+											"\r",
+											"console.log(authors);\r",
+											"\r",
+											"pm.test(\"Should return non empty list od books\", function() {\r",
+											"    pm.expect(books).is.not.empty;\r",
+											"});\r",
+											"\r",
+											"pm.test(\"List should contain Effective Java\", function () {\r",
+											"    pm.expect(authors).contains('Tim Peierls')\r",
+											"});\r",
+											"\r",
+											"\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/books?title=Java",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"books"
+									],
+									"query": [
+										{
+											"key": "title",
+											"value": "Java"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "POST",
+					"item": [
+						{
+							"name": "dodanie nowego tytułu",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Testowanie REST API dla początkujących\",\r\n    \"authors\": [49],\r\n    \"year\": 2022,\r\n    \"price\": 49.99,\r\n    \"available\": 100\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/books",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"books"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "dodanie nowego tytułu 2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Testowanie REST API dla początkujących2\",\r\n    \"authors\": [49],\r\n    \"year\": 2022,\r\n    \"price\": 49.99,\r\n    \"available\": 100\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/books",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"books"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "dodanie książki o tym samym tytule",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Testowanie REST API dla początkujących2\",\r\n    \"authors\": [49],\r\n    \"year\": 2022,\r\n    \"price\": 49.99,\r\n    \"available\": 100\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/books",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"books"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "dodanie książki z pustym rokiem",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Testowanie REST API dla początkujących33\",\r\n    \"authors\": [49],\r\n    \"year\": ,\r\n    \"price\": 49.99,\r\n    \"available\": 100\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/books",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"books"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "dodanie książki bez ceny",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Testowanie REST API dla początkujących2\",\r\n    \"authors\": [49],\r\n    \"year\": 2022,\r\n    \"available\": 100\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/books",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"books"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "dodanie książki bez autora",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Testowanie REST API dla początkujących22\",\r\n    \"year\": 2022,\r\n    \"price\": 49.99,\r\n    \"available\": 100\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/books",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"books"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "dodanie książki bez tytułu",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\r\n    \"authors\": [49],\r\n    \"year\": 2022,\r\n    \"price\": 49.99,\r\n    \"available\": 100\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/books",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"books"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "dodanie nowej książki- pusty json",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											"const json = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Should return list od errors\", function(){\r",
+											"    pm.expect(json.status).to.eql(400)\r",
+											"    pm.expect(json.errors).to.include('year must not be null')\r",
+											"    pm.expect(json.errors).to.include('authors must not be empty')\r",
+											"    pm.expect(json.errors).to.include('price must not be null')\r",
+											"    pm.expect(json.errors).to.include('title must not be blank')\r",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/books",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"books"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "dodanie nowego tytułu i lista randomowych danych",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"const book = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Title should include expected text\", function () {\r",
+											"   pm.expect(book.title).to.include(\"Testowanie\");\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Testowanie - {{$randomCountry}}\",\r\n    \"authors\": [49],\r\n    \"year\": 2022,\r\n    \"price\": 15,\r\n    \"available\": 100\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/books",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"books"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "utworzenie nowego autora",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {\r",
+											"   pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"const json = pm.response.json();\r",
+											"\r",
+											"\r",
+											"let firstName = pm.collectionVariables.get(\"colRandomFirstName\");\r",
+											"console.log(\"Test: \" + firstName);\r",
+											"\r",
+											"\r",
+											"let lastName = pm.collectionVariables.get(\"colRandomLastName\");\r",
+											"console.log(\"Test: \" + lastName);\r",
+											"\r",
+											"\r",
+											"pm.test(\"Should create new author\", function () {\r",
+											"   pm.expect(json.firstName).to.eql(firstName);\r",
+											"   pm.expect(json.lastName).to.eql(lastName);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.collectionVariables.set(\"authorId\", json.id);\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"let firstName = pm.variables.replaceIn('{{$randomFirstName}}');\r",
+											"console.log(\"Pre-request Script: \" + firstName);\r",
+											"pm.collectionVariables.set(\"colRandomFirstName\", firstName);\r",
+											"\r",
+											"\r",
+											"let lastName = pm.variables.replaceIn('{{$randomLastName}}');\r",
+											"console.log(\"Pre-request Script: \" + lastName);\r",
+											"           pm.collectionVariables.set(\"colRandomLastName\", lastName);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"firstName\": \"{{colRandomFirstName}}\",\r\n   \"lastName\": \"{{colRandomLastName}}\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/authors",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"authors"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "sprawdzenie nowego autora Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"   pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"const author = pm.response.json();\r",
+											"\r",
+											"\r",
+											"let firstName = pm.collectionVariables.get(\"colRandomFirstName\");\r",
+											"console.log(\"Test: \" + firstName);\r",
+											"\r",
+											"\r",
+											"let lastName = pm.collectionVariables.get(\"colRandomLastName\");\r",
+											"console.log(\"Test: \" + lastName);\r",
+											"\r",
+											"\r",
+											"pm.test(\"Should return correct author details\", function () {\r",
+											"   pm.expect(author.firstName).to.eql(firstName);\r",
+											"   pm.expect(author.lastName).to.eql(lastName);\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/authors/{{authorId}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"authors",
+										"{{authorId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "PUT",
+					"item": [
+						{
+							"name": "utworzenie nowej książki",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Książka do edytowania\",\r\n    \"authors\": [49],\r\n    \"year\": 2022,\r\n    \"price\": 49.99,\r\n    \"available\": 100\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/books",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"books"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "edycja nowej książki po roku",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Książka do edytowania\",\r\n    \"authors\": [49],\r\n    \"year\": 2021,\r\n    \"price\": 49.99,\r\n    \"available\": 100\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/books/48",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"books",
+										"48"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "edycja nowej książki po cenie",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Książka do edytowania\",\r\n    \"authors\": [49],\r\n    \"year\": 2022,\r\n    \"price\": 55.00,\r\n    \"available\": 100\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/books/48",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"books",
+										"48"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "BOOK COVER",
+			"item": [
+				{
+					"name": "książka do okładki",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Książka do okładki\",\r\n    \"authors\": [49],\r\n    \"year\": 2020,\r\n    \"price\": 70.00,\r\n    \"available\": 100\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/books",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Utworzenie tokenu administratora",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"const json = pm.response.json();\r",
+									"\r",
+									"pm.environment.set(\"token\", json.token); \r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "dodanie okładki i ustawienie tokenu",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/hpnb/OneDrive/Pulpit/nadpobudliwy-pies_1633946158412.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/books/49/cover",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"books",
+								"49",
+								"cover"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sprawdzenie czy  okładka się dodała",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/books/49",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"books",
+								"49"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "usunięcie okładki",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/books/49/cover",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"books",
+								"49",
+								"cover"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sprawdzenie czy okładka została usunięta",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/books/49",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"books",
+								"49"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ORDERS",
+			"item": [
+				{
+					"name": "GET",
+					"item": [
+						{
+							"name": "sprawdzenie zamówień",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/orders",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"orders"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "sprawdzenie istniejącego zamówienia",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/orders/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"orders",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "sprawdzenie nieistniejącego zamówienia",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/orders/10",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"orders",
+										"10"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "POST",
+					"item": [
+						{
+							"name": "Dodanie zamówienia",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"items\": [\r\n    {\r\n      \"bookId\": 30,\r\n      \"quantity\": 2\r\n    }\r\n  ],\r\n  \"recipient\": {\r\n    \"name\": \"Jan Kowalski\",\r\n    \"phone\": \"735123123123\",\r\n    \"street\": \"Sezamkowa\",\r\n    \"city\": \"Warszawa\",\r\n    \"zipCode\": \"40-001\",\r\n    \"email\": \"jankowalski1@testmail.com\"\r\n  }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/orders",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"orders"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Dodanie zamówienia 2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"items\": [\r\n    {\r\n      \"bookId\": 30,\r\n      \"quantity\": 2\r\n    }\r\n  ],\r\n  \"recipient\": {\r\n    \"name\": \"Anna Kowalska3\",\r\n    \"phone\": \"735123123123\",\r\n    \"street\": \"Sezamkowa\",\r\n    \"city\": \"Kraków\",\r\n    \"zipCode\": \"40-001\",\r\n    \"email\": \"akowalska@testmail.com\"\r\n  }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/orders",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"orders"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "PATCH",
+					"item": [
+						{
+							"name": "zmiana statusu",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"status\": \"PAID\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/orders/11/status",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"orders",
+										"11",
+										"status"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "DELETE",
+					"item": [
+						{
+							"name": "usunięcie nieopłaconego zamówienia",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/orders/12",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"orders",
+										"12"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "sprawdzenie stanu książek po usunięciu",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/books/30",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"books",
+										"30"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "authorId",
+			"value": ""
+		},
+		{
+			"key": "colRandomFirstName",
+			"value": ""
+		},
+		{
+			"key": "colRandomLastName",
+			"value": ""
+		}
+	]
+}
